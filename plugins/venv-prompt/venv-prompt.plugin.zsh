@@ -27,6 +27,7 @@ update_virtual_env_prompt() {
         else
             # Get Python version from the virtual environment
             local python_version=$(python --version 2>&1 | cut -d' ' -f2)
+            python_version=${python_version//$'\r'/} # Remove carriage return
 
             # Extract the environment name without parentheses and create a new prompt
             local venv_name=${VIRTUAL_ENV_PROMPT//[()]/}
