@@ -42,8 +42,7 @@ This plugin enhances your command prompt when working with Python virtual enviro
 
 ## Compatibility
 
-This plugin works with standard Python virtual environments and any tool that sets the `VIRTUAL_ENV` and `VIRTUAL_ENV_PROMPT` environment variables, including:
+This plugin works with standard Python virtual environments and any tool that sets the `VIRTUAL_ENV`, `VIRTUAL_ENV_PROMPT`, and `_OLD_VIRTUAL_PS1` environment variables, including:
 
 - `venv` module
 - `virtualenv`
-- `conda` (when configured properly)
