@@ -23,7 +23,7 @@ update_virtual_env_prompt() {
         if [ $? -ne 0 ]; then
             prompt_prefix="(Error! Python not found) "
         elif ! [[ "$python_exe" == "$VIRTUAL_ENV"* ]]; then
-            prompt_prefix="(Error! Python path doesn't match set VIRTUAL_VENV) "
+            prompt_prefix="(Error! Python executable isn't in VIRTUAL_VENV) "
         else
             # Get Python version from the virtual environment
             local python_version=$(python --version 2>&1 | cut -d' ' -f2)
