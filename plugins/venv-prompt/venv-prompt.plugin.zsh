@@ -2,13 +2,18 @@
 update_virtual_env_prompt() {
     # If any of the following variables are unset, there is nothing to do
     if [ -z "${VIRTUAL_ENV+_}" ] ||
-        [ -z "${VIRTUAL_ENV_PROMPT+_}" ] ||
-        [ -z "{$_OLD_VIRTUAL_PS1+_}" ]; then
+        [ -z "${VIRTUAL_ENV_PROMPT+_}" ]; then
         return
     fi
 
-    # If VIRTUAL_ENV_DISABLE_PROMPT is set, then reset to old prompt
-    if ! [ -z "${VIRTUAL_ENV_DISABLE_PROMPT+_}" ]; then
+    # If _OLD_VIRTUAL_PS1 it is empty or unset
+    if [ -z "$_OLD_VIRTUAL_PS1" ]; then
+        # Just in case, try to remove VIRTUAL_ENV_PROMPT from the prefix
+        _OLD_VIRTUAL_PS1="${PS1#$VIRTUAL_ENV_PROMPT}"
+    fi
+
+    # If VIRTUAL_ENV_DISABLE_PROMPT is not set to null, then reset to old prompt
+    if ! [ -z "$VIRTUAL_ENV_DISABLE_PROMPT" ]; then
         PS1="$_OLD_VIRTUAL_PS1"
         return
     fi
