@@ -32,6 +32,7 @@ update_virtual_env_prompt() {
         # Get Python version from the virtual environment
         local python_version=$(python --version 2>&1 | head -n1 | cut -d' ' -f2)
         python_version=${python_version//$'\r'/} # Remove carriage return
+        python_version+=$(python -c "import sys; print('' if getattr(sys, '_is_gil_enabled', lambda: True)() else 't', end='')")
 
         # Extract the environment name without parentheses and create a new prompt
         local venv_name=${VIRTUAL_ENV_PROMPT//[()]/}
