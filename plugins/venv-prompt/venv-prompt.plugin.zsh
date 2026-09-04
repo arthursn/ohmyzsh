@@ -30,10 +30,7 @@ update_virtual_env_prompt() {
         prompt_python_msg="Error! Python executable isn't in VIRTUAL_VENV"
     else
         # Get Python version from the virtual environment
-        local python_version=$(python --version 2>&1 | head -n1 | cut -d' ' -f2)
-        python_version=${python_version//$'\r'/} # Remove carriage return
-        python_version+=$(python -c "import sys; print('' if getattr(sys, '_is_gil_enabled', lambda: True)() else 't', end='')")
-
+        local python_version=$(python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}', '' if getattr(sys, '_is_gil_enabled', lambda: True)() else 't', sep='', end='')")
         # Extract the environment name without parentheses and create a new prompt
         local venv_name=${VIRTUAL_ENV_PROMPT//[()]/}
         venv_name=${venv_name%% *} # Remove any trailing spaces
